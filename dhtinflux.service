@@ -1,0 +1,15 @@
+[Unit]
+Description=DHTInflux service
+Requires=network-online.target
+Requires=influxd.service
+
+[Service]
+Type=simple
+User=pi
+Group=pi
+ExecStartPre=/bin/sleep 15
+ExecStart=/opt/DHTInflux/venv/bin/python -m dhtinflux
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
